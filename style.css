@@ -14,3 +14,7 @@ h1 {
   justify-content:center;
   margin-top: 100px;
 }
+
+.bar:hover {
+  fill: yellow;
+}

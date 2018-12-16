@@ -21,9 +21,10 @@ const callback = function(err, data) {
     console.log(dates);
     console.log(dates2);
     
-    const w = 800
-    const h = 400;
-    const padding = 50;
+    const w = 1200
+    const barWidth = w/275;
+    const h = 750;
+    const padding = 40;
     const minX = d3.min(dates2, (d) => d);
     const maxX = d3.max(dates2, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
@@ -75,14 +76,14 @@ const callback = function(err, data) {
       .attr("class", "bar")
       .attr("x", (d, i) => xScale(d[2]))
       .attr("y", (d) => h - gdpScale(d[1]) - padding)
-      .attr("width", 2)
+      .attr("width", barWidth)
       .attr("height", (d) => gdpScale(d[1]))
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
       .append("title")
       .attr("id", "tooltip")
-      .attr()
+      .attr("data-date", (d) => d[0])
       .text((d) => d[0] + " " + d[1]);
   }
 };
