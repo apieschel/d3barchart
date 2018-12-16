@@ -9,16 +9,16 @@ const callback = function(err, data) {
     console.log(dataset);
     let dates = [];
     
-    //for(let i = 0; i < dataset.length; i++) {
-      dates.push(new Date(dataset[0][0]));
-    //}
+    for(let i = 0; i < dataset.length; i++) {
+      dates.push(dataset[i][0].replace(/-/g, ".")).substring(0, 7);
+    }
     console.log(dates);
     
     const w = 1000
     const h = 600;
     const padding = 30;
-    const minX = d3.min(dataset, (d) => d[0]);
-    const maxX = d3.max(dataset, (d) => d[0]);
+    const minX = d3.min(dates, (d) => d);
+    const maxX = d3.max(dates, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
     const maxY = d3.max(dataset, (d) => d[1]);
     
