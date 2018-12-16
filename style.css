@@ -8,3 +8,8 @@ body {
 h1 {
   text-align: center;
 }
+
+.container {
+  display: flex; 
+  justify-content:center;
+}
