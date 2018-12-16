@@ -1,4 +1,5 @@
 /* globals d3 */
+
 let dataset = [];
 const xhr = new XMLHttpRequest();
 const callback = function(err, data) {
