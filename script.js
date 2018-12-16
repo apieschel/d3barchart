@@ -12,8 +12,9 @@ const callback = function(err, data) {
     
     for(let i = 0; i < dataset.length; i++) {
       dates.push(dataset[i][0].replace(/-/g, ".").substring(0, 7));
-      dataset[i][0] = dataset[i][0].replace(/-/g, ".").substring(0, 7);
-      dates2.push(d3.timeFormat(dates[i][0]));
+      let day = new Date(dataset[i][0]);
+      dataset[i][0] = day;
+      dates2.push(day);
     }
     console.log(dates);
     console.log(dates2);
@@ -21,8 +22,8 @@ const callback = function(err, data) {
     const w = 800
     const h = 400;
     const padding = 30;
-    const minX = d3.min(dates, (d) => d);
-    const maxX = d3.max(dates, (d) => d);
+    const minX = d3.min(dates2, (d) => d);
+    const maxX = d3.max(dates2, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
     const maxY = d3.max(dataset, (d) => d[1]);
     
