@@ -9,11 +9,11 @@ const callback = function(err, data) {
     console.log(dataset);
     
     const w = 1000
-    const h = 300;
+    const h = 600;
     const padding = 30;
 
     const xScale = d3.scaleLinear()
-                      .domain([0, 200])
+                      .domain([1947, 2015])
                       .range([padding, w - padding]);
     const yScale = d3.scaleLinear()
                          .domain([0, 300])
@@ -47,10 +47,10 @@ const callback = function(err, data) {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("x", (d, i) => i + 10)
-      .attr("y", 0)
+      .attr("x", (d, i) => padding + i*3)
+      .attr("y", (d) => h - d[1] - padding)
       .attr("width", 2)
-      .attr("height", 100)
+      .attr("height", (d) => d[1])
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1]);
   }
