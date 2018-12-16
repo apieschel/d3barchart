@@ -18,3 +18,16 @@ h1 {
 .bar:hover {
   fill: yellow;
 }
+
+.tooltip {
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: auto;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lavender;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;
+}

@@ -83,19 +83,23 @@ const callback = function(err, data) {
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
     
-    
+    /*
     svg.selectAll("div")
        .data(dataset)
        .enter()
        .append("div")
-       .attr("x", (d, i) => xScale(d[2]))
-       .attr("y", (d) => d)
-       .attr("width", 200)
-       .attr("height", 100)
-       .attr("id", "tooltip")
+       .attr("class", "tooltip")
        .attr("data-date", (d) => d[0])
        .text((d) => d[0] + " " + d[1]);
+    */
     
+     svg.selectAll("text")
+       .data(dataset)
+       .enter()
+       .append("text")
+       // Add your code below this line
+       .attr("x", (d, i) => xScale(d[2]) + 5)
+       .attr("y", (d, i) => h - d[1]);
   }
   
 };
