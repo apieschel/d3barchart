@@ -11,6 +11,8 @@ const callback = function(err, data) {
     const w = 1000
     const h = 600;
     const padding = 30;
+    const minX = d3.min(dataset, (d) => d[0]);
+    const minY = d3.min(dataset, (d) => d[1]);
 
     const xScale = d3.scaleLinear()
                       .domain([1947, 2015])
