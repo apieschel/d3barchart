@@ -8,12 +8,15 @@ const callback = function(err, data) {
     dataset = data.data;
     console.log(dataset);
     let dates = [];
+    let dates2 = [];
     
     for(let i = 0; i < dataset.length; i++) {
       dates.push(dataset[i][0].replace(/-/g, ".").substring(0, 7));
       dataset[i][0] = dataset[i][0].replace(/-/g, ".").substring(0, 7);
+      dates2.push(d3.timeFormat(dates[i][0]));
     }
     console.log(dates);
+    console.log(dates2);
     
     const w = 800
     const h = 400;
