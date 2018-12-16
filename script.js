@@ -82,11 +82,22 @@ const callback = function(err, data) {
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
-      .append("div")
-      .attr("id", "tooltip")
-      .attr("data-date", (d) => d[0])
-      .text((d) => d[0] + " " + d[1]);
+    
+    
+    svg.selectAll("div")
+       .data(dataset)
+       .enter()
+       .append("div")
+       .attr("x", (d, i) => xScale(d[2]))
+       .attr("y", (d) => d)
+       .attr("width", 200)
+       .attr("height", 100)
+       .attr("id", "tooltip")
+       .attr("data-date", (d) => d[0])
+       .text((d) => d[0] + " " + d[1]);
+    
   }
+  
 };
 
 xhr.open('GET', 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json', true);
