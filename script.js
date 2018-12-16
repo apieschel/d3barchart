@@ -82,7 +82,7 @@ const callback = function(err, data) {
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
-      .append("title")
+      .append("div")
       .attr("id", "tooltip")
       .attr("data-date", (d) => d[0])
       .text((d) => d[0] + " " + d[1]);
