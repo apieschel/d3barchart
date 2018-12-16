@@ -1,4 +1,17 @@
 /* globals d3 */
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json', true);
+xhr.responseType = 'json';
+xhr.onload = function() {
+  var status = xhr.status;
+  if (status === 200) {
+    callback(null, xhr.response);
+  } else {
+    callback(status, xhr.response);
+  }
+};
+hr.send();
+
 const w = 500
 const h = 300;
 const padding = 30;
