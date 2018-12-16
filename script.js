@@ -81,7 +81,9 @@ const callback = function(err, data) {
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
       .append("title")
-      .text((d) => d);
+      .attr("id", "tooltip")
+      .attr()
+      .text((d) => d[0] + " " + d[1]);
   }
 };
 
