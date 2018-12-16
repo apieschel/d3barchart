@@ -7,6 +7,12 @@ const callback = function(err, data) {
   } else {
     dataset = data.data;
     console.log(dataset);
+    let dates = [];
+    
+    //for(let i = 0; i < dataset.length; i++) {
+      dates.push(new Date(dataset[0][0]));
+    //}
+    console.log(dates);
     
     const w = 1000
     const h = 600;
