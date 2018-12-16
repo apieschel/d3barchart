@@ -25,7 +25,7 @@ const callback = function(err, data) {
                       .domain([minX, maxX])
                       .range([padding, w - padding]);
     const yScale = d3.scaleLinear()
-                         .domain([minY, maxY])
+                         .domain([maxY, minY])
                          .range([h - padding, padding]);
 
     const xAxis = d3.axisBottom(xScale);
@@ -57,9 +57,9 @@ const callback = function(err, data) {
       .append("rect")
       .attr("class", "bar")
       .attr("x", (d, i) => padding + i*3)
-      .attr("y", (d) => h - d[1] - padding)
+      .attr("y", (d) => h - yScale(d[1]) - padding)
       .attr("width", 2)
-      .attr("height", (d) => d[1])
+      .attr("height", (d) => yScale(d[1]))
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1]);
   }
