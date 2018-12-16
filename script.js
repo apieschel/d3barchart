@@ -23,7 +23,7 @@ const callback = function(err, data) {
     
     const w = 800
     const h = 400;
-    const padding = 40;
+    const padding = 50;
     const minX = d3.min(dates2, (d) => d);
     const maxX = d3.max(dates2, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
@@ -43,7 +43,7 @@ const callback = function(err, data) {
     
     const gdpScale = d3.scaleLinear()
                          .domain([0, maxY])
-                         .range([0, h]);
+                         .range([0, h - padding]);
 
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
@@ -74,11 +74,14 @@ const callback = function(err, data) {
       .append("rect")
       .attr("class", "bar")
       .attr("x", (d, i) => xScale(d[2]))
-      .attr("y", (d) => h - yScale(d[1]) - padding)
+      .attr("y", (d) => h - gdpScale(d[1]) - padding)
       .attr("width", 2)
       .attr("height", (d) => gdpScale(d[1]))
       .attr("data-date", (d) => d[0])
-      .attr("data-gdp", (d) => d[1]);
+      .attr("data-gdp", (d) => d[1])
+      .attr("fill", "purple")
+      .append("title")
+      .text((d) => d);
   }
 };
 
