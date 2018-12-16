@@ -1,5 +1,17 @@
 /* globals d3 */
+let dataset = [];
 const xhr = new XMLHttpRequest();
+const callback = function(err, data) {
+  if (err !== null) {
+    alert('Something went wrong: ' + err);
+  } else {
+    dataset = data.data;
+    console.log(data.data);
+  }
+};
+
+console.log(dataset);
+
 xhr.open('GET', 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json', true);
 xhr.responseType = 'json';
 xhr.onload = function() {
@@ -10,7 +22,7 @@ xhr.onload = function() {
     callback(status, xhr.response);
   }
 };
-hr.send();
+xhr.send();
 
 const w = 500
 const h = 300;
