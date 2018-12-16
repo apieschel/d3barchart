@@ -49,6 +49,15 @@ const callback = function(err, data) {
 
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
+    
+    /* Help from @bloo0178 in this forum post for passing the tooltip tests: 
+    https://www.freecodecamp.org/forum/t/issues-with-data-visualization-project-1-bar-chart-tests/222959/2 */
+    let tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .attr("id", "tooltip")
+      .style("opacity", 0);
 
     d3.select("body")
       .append("h1")
@@ -75,14 +84,30 @@ const callback = function(err, data) {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("x", (d, i) => xScale(d[2]))
+      .attr("x", (d) => xScale(d[2]))
       .attr("y", (d) => h - gdpScale(d[1]) - padding)
       .attr("width", barWidth)
       .attr("height", (d) => gdpScale(d[1]))
       .attr("data-date", (d) => d[0])
       .attr("data-gdp", (d) => d[1])
       .attr("fill", "purple")
-    
+      .on("mouseover", function(d) {
+        tooltip
+          .transition()
+          .duration(200)
+          .style("opacity", 0.9);
+        tooltip
+          .html("<p>Date: " + d[0] + "</p><p>GDP: " + d[1] + "</p>")
+          .style("left", d3.event.pageX + 20 + "px")
+          .style("top", d3.event.pageY + 20 + "px");
+        tooltip.attr("data-date", d[0]);
+      })
+      .on("mouseout", function(d) {
+        tooltip
+          .transition()
+          .duration(400)
+          .style("opacity", 0);
+      });
     /*
     svg.selectAll("div")
        .data(dataset)
@@ -97,9 +122,9 @@ const callback = function(err, data) {
        .data(dataset)
        .enter()
        .append("text")
-       // Add your code below this line
-       .attr("x", (d, i) => xScale(d[2]) + 5)
-       .attr("y", (d, i) => h - d[1]);
+       .attr("x", (d) => xScale(d[2]))
+       .attr("y", (d) => h - gdpScale(d[1]) - padding)
+       .text((d) => d[0])
   }
   
 };

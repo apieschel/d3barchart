@@ -22,7 +22,7 @@ h1 {
 .tooltip {
     position: absolute;			
     text-align: center;			
-    width: 60px;					
+    width: 150px;					
     height: auto;					
     padding: 2px;				
     font: 12px sans-serif;		
@@ -30,4 +30,8 @@ h1 {
     border: 0px;		
     border-radius: 8px;			
     pointer-events: none;
+}
+
+text {
+  opacity: 0;
 }
