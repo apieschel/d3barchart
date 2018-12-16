@@ -9,11 +9,13 @@ const callback = function(err, data) {
     console.log(dataset);
     let dates = [];
     let dates2 = [];
+    let originalFormat = [];
     
     for(let i = 0; i < dataset.length; i++) {
+      originalFormat.push(dataset[i][0]);
       dates.push(dataset[i][0].replace(/-/g, ".").substring(0, 7));
       let day = new Date(dataset[i][0]);
-      dataset[i][0] = day;
+      dataset[i][2] = day;
       dates2.push(day);
     }
     console.log(dates);
@@ -32,14 +34,14 @@ const callback = function(err, data) {
     console.log(minY);
     console.log(maxY);
 
-    const xScale = d3.scaleLinear()
+    const xScale = d3.scaleTime()
                       .domain([minX, maxX])
                       .range([padding, w - padding]);
     const yScale = d3.scaleLinear()
                          .domain([maxY, minY])
                          .range([h - padding, padding]);
 
-    const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
+    const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
 
     d3.select("body")
@@ -58,7 +60,7 @@ const callback = function(err, data) {
         .call(xAxis);
 
     svg.append("g")
-        .attr("transform", "translate(0," + (w - padding) + ")")
+        .attr("transform", "translate(0, 0)")
         .attr("id", "y-axis")
         .call(yAxis);
 
@@ -67,7 +69,7 @@ const callback = function(err, data) {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("x", (d, i) => xScale(d[0]))
+      .attr("x", (d, i) => xScale(d[2]))
       .attr("y", (d) => h - yScale(d[1]) - padding)
       .attr("width", 2)
       .attr("height", (d) => yScale(d[1]))
