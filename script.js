@@ -12,13 +12,20 @@ const callback = function(err, data) {
     const h = 600;
     const padding = 30;
     const minX = d3.min(dataset, (d) => d[0]);
+    const maxX = d3.max(dataset, (d) => d[0]);
     const minY = d3.min(dataset, (d) => d[1]);
+    const maxY = d3.max(dataset, (d) => d[1]);
+    
+    console.log(minX);
+    console.log(maxX);
+    console.log(minY);
+    console.log(maxY);
 
     const xScale = d3.scaleLinear()
-                      .domain([1947, 2015])
+                      .domain([minX, maxX])
                       .range([padding, w - padding]);
     const yScale = d3.scaleLinear()
-                         .domain([0, 300])
+                         .domain([minY, maxY])
                          .range([h - padding, padding]);
 
     const xAxis = d3.axisBottom(xScale);
