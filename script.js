@@ -57,3 +57,13 @@ svg.append("g")
     .attr("transform", "translate(0," + (w - padding) + ")")
     .attr("id", "y-axis")
     .call(yAxis);
+
+svg.selectAll("rect")
+  .data(dataset)
+  .enter()
+  .append("rect")
+  .attr("class", "bar")
+  .attr("x", 0)
+  .attr("y", 0)
+  .attr("width", 25)
+  .attr("height", 100);
