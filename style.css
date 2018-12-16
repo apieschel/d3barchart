@@ -24,14 +24,9 @@ h1 {
     text-align: center;			
     width: 150px;					
     height: auto;					
-    padding: 2px;				
+    padding: 5px;				
     font: 14px sans-serif;		
     background: lavender;	
     border: 0px;		
-    border-radius: 8px;			
     pointer-events: none;
-}
-
-text {
-  opacity: 0;
 }

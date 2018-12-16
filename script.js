@@ -21,9 +21,10 @@ const callback = function(err, data) {
     console.log(dates);
     console.log(dates2);
     
-    const w = 800
-    const h = 400;
-    const padding = 40;
+    const w = 1200
+    const h = 750;
+    const barWidth = w/275;
+    const padding = 50;
     const minX = d3.min(dates2, (d) => d);
     const maxX = d3.max(dates2, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
@@ -43,10 +44,17 @@ const callback = function(err, data) {
     
     const gdpScale = d3.scaleLinear()
                          .domain([0, maxY])
-                         .range([0, h]);
+                         .range([0, h - padding]);
 
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
+    
+    let tooltip = d3
+      .select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .attr("id", "tooltip")
+      .style("opacity", 0);
 
     d3.select("body")
       .append("h1")
@@ -75,10 +83,28 @@ const callback = function(err, data) {
       .attr("class", "bar")
       .attr("x", (d, i) => xScale(d[2]))
       .attr("y", (d) => h - gdpScale(d[1]) - padding)
-      .attr("width", 2)
+      .attr("width", barWidth)
       .attr("height", (d) => gdpScale(d[1]))
       .attr("data-date", (d) => d[0])
-      .attr("data-gdp", (d) => d[1]);
+      .attr("data-gdp", (d) => d[1])
+      .attr("fill", "purple")
+      .on("mouseover", function(d) {
+        tooltip
+          .transition()
+          .duration(100)
+          .style("opacity", 0.85);
+        tooltip
+          .html("<p><strong>Date:</strong> " + d[0] + "</p><p><strong>GDP:</strong> " + d[1] + "</p>")
+          .style("left", d3.event.pageX + 15 + "px")
+          .style("top", d3.event.pageY + 15 + "px");
+        tooltip.attr("data-date", d[0]);
+      })
+      .on("mouseout", function(d) {
+        tooltip
+          .transition()
+          .duration(100)
+          .style("opacity", 0);
+      });
   }
 };
 
