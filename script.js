@@ -11,6 +11,7 @@ const callback = function(err, data) {
     
     for(let i = 0; i < dataset.length; i++) {
       dates.push(dataset[i][0].replace(/-/g, ".").substring(0, 7));
+      dataset[i][0] = dataset[i][0].replace(/-/g, ".").substring(0, 7);
     }
     console.log(dates);
     
