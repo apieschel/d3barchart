@@ -10,12 +10,12 @@ const callback = function(err, data) {
     let dates = [];
     
     for(let i = 0; i < dataset.length; i++) {
-      dates.push(dataset[i][0].replace(/-/g, ".")).substring(0, 7);
+      dates.push(dataset[i][0].replace(/-/g, ".").substring(0, 7));
     }
     console.log(dates);
     
-    const w = 1000
-    const h = 600;
+    const w = 800
+    const h = 400;
     const padding = 30;
     const minX = d3.min(dates, (d) => d);
     const maxX = d3.max(dates, (d) => d);
@@ -34,7 +34,7 @@ const callback = function(err, data) {
                          .domain([maxY, minY])
                          .range([h - padding, padding]);
 
-    const xAxis = d3.axisBottom(xScale);
+    const xAxis = d3.axisBottom(xScale).tickFormat(d3.format("d"));
     const yAxis = d3.axisLeft(yScale);
 
     d3.select("body")
@@ -62,7 +62,7 @@ const callback = function(err, data) {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("x", (d, i) => padding + i*3)
+      .attr("x", (d, i) => xScale(d[0]))
       .attr("y", (d) => h - yScale(d[1]) - padding)
       .attr("width", 2)
       .attr("height", (d) => yScale(d[1]))
