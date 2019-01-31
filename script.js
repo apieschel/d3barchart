@@ -6,7 +6,6 @@ const callback = function(err, data) {
     alert('Something went wrong: ' + err);
   } else {
     dataset = data.data;
-    console.log(dataset);
     let dates = [];
     let dates2 = [];
     let originalFormat = [];
@@ -18,8 +17,6 @@ const callback = function(err, data) {
       dataset[i][2] = day;
       dates2.push(day);
     }
-    console.log(dates);
-    console.log(dates2);
     
     const w = 900;
     const h = 500;
