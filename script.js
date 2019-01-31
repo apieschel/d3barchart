@@ -21,8 +21,8 @@ const callback = function(err, data) {
     console.log(dates);
     console.log(dates2);
     
-    const w = 1200
-    const h = 750;
+    const w = 900;
+    const h = 500;
     const barWidth = w/275;
     const padding = 50;
     const minX = d3.min(dates2, (d) => d);
@@ -59,7 +59,7 @@ const callback = function(err, data) {
     d3.select("body")
       .append("h1")
       .attr("id", "title")
-      .text("GDP in the United States");
+      .text("GDP in the United States Since 1945");
 
     const svg = d3.select(".container")
                   .append("svg")
