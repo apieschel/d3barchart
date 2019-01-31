@@ -18,19 +18,15 @@ const callback = function(err, data) {
       dates2.push(day);
     }
     
+    console.log(dataset.length);
     const w = 900;
     const h = 500;
-    const barWidth = w/275;
+    const barWidth = w/dataset.length;
     const padding = 50;
     const minX = d3.min(dates2, (d) => d);
     const maxX = d3.max(dates2, (d) => d);
     const minY = d3.min(dataset, (d) => d[1]);
     const maxY = d3.max(dataset, (d) => d[1]);
-    
-    console.log(minX);
-    console.log(maxX);
-    console.log(minY);
-    console.log(maxY);
 
     const xScale = d3.scaleTime()
                       .domain([minX, maxX])
@@ -46,7 +42,7 @@ const callback = function(err, data) {
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
     
-    let tooltip = d3
+    const tooltip = d3
       .select("body")
       .append("div")
       .attr("class", "tooltip")
